@@ -12,7 +12,6 @@ const Bricks = db.bricks
 
 app.get('/api/bricks', async (req, res) => {
     const bricks = await Bricks.findAll()
-    console.log(bricks)
     res.json(bricks)
 })
 
