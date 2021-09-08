@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
-    const User = sequelize.define('User', {
+    const User = sequelize.define('user', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -9,6 +9,11 @@ module.exports = function (sequelize) {
             allowNull: false
         },
         username: {
+            type: Sequelize.STRING,
+            unique: true,
+            allowNull: false
+        },
+        email: {
             type: Sequelize.STRING,
             unique: true,
             allowNull: false
@@ -21,11 +26,12 @@ module.exports = function (sequelize) {
         timestamps: false
     })
 
-    User.associate = (models) => {
-        User.belongsToMany(models.Role, {
+    User.associate = ({ role, doctor, patient }) => {
+        User.hasOne(doctor)
+        User.hasOne(patient)
+        User.belongsToMany(role, {
             through: 'User_Roles',
         });
-        User.hasMany(models.Address);
     };
 
 

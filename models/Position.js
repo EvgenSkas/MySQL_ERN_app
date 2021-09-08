@@ -1,23 +1,28 @@
 const Sequelize = require('sequelize')
 
 module.exports = function (sequelize) {
-    const Address = sequelize.define('Address', {
+    const Position = sequelize.define('position', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
-        place: {
+        value: {
             type: Sequelize.STRING,
         },
     }, {
         timestamps: false
     })
 
-    Address.associate = models => {
-        Address.belongsTo(models.User)
-    }
+    Position.associate = ({ doctor }) => {
+        Position.hasMany(doctor, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
-    return Address
+
+    return Position
 }

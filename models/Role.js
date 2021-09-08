@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
 module.exports = function (sequelize) {
-    const Role = sequelize.define('Role', {
+    const Role = sequelize.define('role', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -17,9 +17,10 @@ module.exports = function (sequelize) {
         timestamps: false
     })
 
-    Role.associate = (models) => {
-        Role.belongsToMany(models.User, {
+    Role.associate = ({ user }) => {
+        Role.belongsToMany(user, {
             through: 'User_Roles',
+            allowNull: false
         });
     };
 
