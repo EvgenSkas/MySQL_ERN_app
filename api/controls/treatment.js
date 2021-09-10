@@ -43,7 +43,6 @@ class treatmentController {
     }
 
     async getTreatments(req, res) {
-        console.log('###req',)
         try {
             const isPatient = req.user.roles.map(({ value }) => value).includes('Patient')
             let allTreatments;
@@ -54,6 +53,9 @@ class treatmentController {
                     },
                     {
                         model: db.patient,
+                    },
+                    {
+                        model: db.conclusion,
                     }
                 ],
                 attributes: { exclude: ['statusId', 'patientId'] },

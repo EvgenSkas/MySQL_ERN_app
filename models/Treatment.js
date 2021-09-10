@@ -59,7 +59,7 @@ module.exports = function (sequelize) {
         }
     })
 
-    Treatment.associate = ({ status, patient }) => {
+    Treatment.associate = ({ status, patient, conclusion }) => {
         Treatment.belongsTo(status, {
             foreignKey: {
                 allowNull: false
@@ -70,6 +70,9 @@ module.exports = function (sequelize) {
             foreignKey: {
                 allowNull: false
             },
+        });
+        Treatment.hasOne(conclusion, {
+            onDelete: 'CASCADE',
         });
     };
 

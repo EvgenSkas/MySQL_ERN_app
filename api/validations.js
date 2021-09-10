@@ -34,9 +34,16 @@ const treatmentValidation = [
     check('soreThroat', 'soreThroat не указан').not().isEmpty(),
 ]
 
+const conclusionValidation = [
+    check('description', 'description не введен!').not().isEmpty(),
+    check('recommendation', 'recommendation не введено!').not().isEmpty(),
+    check('treatmentId', 'treatmentId не введено!').not().isEmpty(),
+]
+
 module.exports = {
     doctorValidation,
     userValidation,
     patientValidation,
-    treatmentValidation
+    treatmentValidation,
+    conclusionValidation
 }

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
 module.exports = function (sequelize) {
-    const Сonclusion = sequelize.define('сonclusion', {
+    const Сonclusion = sequelize.define('conclusion', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -10,9 +10,11 @@ module.exports = function (sequelize) {
         },
         description: {
             type: Sequelize.STRING,
+            allowNull: false
         },
         recommendation: {
             type: Sequelize.STRING,
+            allowNull: false
         },
     }, {
         timestamps: true
