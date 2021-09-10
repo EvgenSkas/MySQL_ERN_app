@@ -20,8 +20,23 @@ const patientValidation = [
     check('age', 'Возраст не указан').not().isEmpty()
 ]
 
+const treatmentValidation = [
+    check('name', 'Treatment Name не введен!').not().isEmpty(),
+    check('complaints', 'complaints не введены!').not().isEmpty(),
+    check('illnessDate', 'illnessDate не введено!').not().isEmpty(),
+    check('skin', 'skin не введен!').not().isEmpty(),
+    check('tonsils', 'tonsils не указан').not().isEmpty(),
+    check('temperature', 'temperature не указан').not().isEmpty(),
+    check('heartRate', 'heartRate не указан').not().isEmpty(),
+    check('cough', 'cough не указан').not().isEmpty(),
+    check('headache', 'headache не указан').not().isEmpty(),
+    check('weakness', 'weakness не указан').not().isEmpty(),
+    check('soreThroat', 'soreThroat не указан').not().isEmpty(),
+]
+
 module.exports = {
     doctorValidation,
     userValidation,
-    patientValidation
+    patientValidation,
+    treatmentValidation
 }

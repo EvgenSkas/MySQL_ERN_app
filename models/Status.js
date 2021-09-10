@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
 module.exports = function (sequelize) {
-    const Role = sequelize.define('role', {
+    const Status = sequelize.define('status', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -10,18 +10,19 @@ module.exports = function (sequelize) {
         },
         value: {
             type: Sequelize.STRING,
-            unique: true,
         },
     }, {
         timestamps: false
     })
 
-    Role.associate = ({ user }) => {
-        Role.belongsToMany(user, {
-            through: 'User_Roles',
-            allowNull: false
+    Status.associate = ({ treatment }) => {
+        Status.hasOne(treatment, {
+            foreignKey: {
+                allowNull: false
+            }
         });
     };
 
-    return Role
+
+    return Status
 }

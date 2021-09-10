@@ -18,7 +18,7 @@ module.exports = function (sequelize) {
         timestamps: false
     })
 
-    Doctor.associate = ({ position, user }) => {
+    Doctor.associate = ({ position, user, сonclusion }) => {
         Doctor.belongsTo(position, {
             foreignKey: {
                 allowNull: false
@@ -28,6 +28,9 @@ module.exports = function (sequelize) {
             foreignKey: {
                 allowNull: false
             },
+            onDelete: 'CASCADE',
+        });
+        Doctor.hasMany(сonclusion, {
             onDelete: 'CASCADE',
         });
     };

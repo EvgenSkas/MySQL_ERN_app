@@ -20,7 +20,9 @@ const createUser = async (body, roleValue) => {
             throw new UserException("Пользователь с таким именем уже существует");
         }
         const hashPassword = bcrypt.hashSync(password, 7);
-        const userRole = await db.role.findOne({ value: roleValue })
+
+        const userRole = await db.role.findOne({ where: { value: roleValue } })
+
         const user = await db.user.create({
             username,
             password: hashPassword,
@@ -31,7 +33,7 @@ const createUser = async (body, roleValue) => {
         return user
 
     } catch (e) {
-        console.log('!!!!!!!!!!!e', e)
+        console.log('e', e)
         return e;
     }
 }

@@ -27,7 +27,6 @@ class patientController {
             })
             return res.json(patient)
         } catch (error) {
-            console.log('e', error)
             res.status(400).json({ message: 'Registration error', error })
         }
     }

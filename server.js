@@ -5,6 +5,7 @@ const db = require('./models')
 const authRouter = require('./api/routers/authRouter')
 const doctorRouter = require('./api/routers/doctorRouter')
 const patientRouter = require('./api/routers/patientRouter')
+const treatmentRouter = require('./api/routers/treatmentRouter')
 
 const PORT = process.env.PORT || 5000
 
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use("/auth", authRouter)
 app.use("/doctors", doctorRouter)
 app.use("/patients", patientRouter)
+app.use("/treatments", treatmentRouter)
 
 app.use(express.static(path.join(__dirname, 'client', 'build')))
 app.get('*', (req, res) => {

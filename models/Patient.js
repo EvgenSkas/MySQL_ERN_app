@@ -22,12 +22,15 @@ module.exports = function (sequelize) {
         timestamps: false
     })
 
-    Patient.associate = ({ user }) => {
+    Patient.associate = ({ user, treatment }) => {
         Patient.belongsTo(user, {
             onDelete: 'CASCADE',
             foreignKey: {
                 allowNull: false
             },
+        });
+        Patient.hasMany(treatment, {
+            onDelete: 'CASCADE',
         });
     };
 
