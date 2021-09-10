@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 
 const db = require('../../models')
-// const { createUser } = require('../services/userService')
+// const { updateTreatment } = require('../services/updateTreatment')
 
 class treatmentController {
     async createConclusion(req, res) {
@@ -10,14 +10,20 @@ class treatmentController {
             if (!errors.isEmpty()) {
                 return res.status(400).json({ message: "Ошибка при создании заключения", errors })
             }
-            const { ...values } = req.body
+            const status = await db.status.findOne({
+                where: { value: 'Рассмотрено' },
+            })
+
+            const treatment = await db.treatment.findOne({ where: { id: req.body.treatmentId } })
+
+            await treatment.setStatus(status)
 
             const doctor = await db.doctor.findOne({ where: { userId: req.user.id } })
             const conclusion = await db.conclusion.create({
-                ...values,
+                ...req.body,
                 doctorId: doctor.id
             })
-            console.log('###doctor', doctor.id, conclusion)
+            console.log('###doctor', treatment)
 
             return res.json(conclusion)
         } catch (error) {

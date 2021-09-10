@@ -56,7 +56,10 @@ class treatmentController {
                     },
                     {
                         model: db.conclusion,
-                    }
+                        include: [{
+                            model: db.doctor,
+                        }]
+                    },
                 ],
                 attributes: { exclude: ['statusId', 'patientId'] },
             }
