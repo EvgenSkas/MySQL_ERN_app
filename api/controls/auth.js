@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../config')
 
 const generateAccessToken = (id, roles) => {
-    console.log('!!!id', id)
     const payload = {
         id,
         roles

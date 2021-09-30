@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator')
 const db = require('../../models')
 // const { updateTreatment } = require('../services/updateTreatment')
 
-class treatmentController {
+class conclusionController {
     async createConclusion(req, res) {
         try {
             const errors = validationResult(req)
@@ -78,4 +78,4 @@ class treatmentController {
     // }
 }
 
-module.exports = new treatmentController()
+module.exports = new conclusionController()
